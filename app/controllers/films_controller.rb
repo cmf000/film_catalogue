@@ -45,6 +45,39 @@ class FilmsController < ApplicationController
     render :new
   end
 
+  def update
+    @film = Film.find(params[:id])
+
+    if params[:directors]
+      params[:directors].each do |_, director_id|
+        next if director_id.blank?
+        director = Director.find(director_id)
+        @film.directors << director unless @film.directors.include?(director)
+      end
+    end
+
+    if params[:countries]
+      params[:countries].each do |_, country_id|
+        next if country_id.blank?
+        country = Country.find(country_id)
+        @film.countries << country unless @film.countries.include?(country)
+      end
+    end
+
+    if params[:genres]
+      params[:genres].each do |_, genre_id|
+        next if genre_id.blank?
+        genre = Genre.find(genre_id)
+        @film.genres << genre unless @film.genres.include?(genre)
+      end
+    end
+
+    if @film.save
+      return redirect_to films_path
+    end
+    render :edit
+  end
+
   def show
     @film = Film.find(params[:id])
   end

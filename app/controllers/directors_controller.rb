@@ -26,12 +26,13 @@ class DirectorsController < ApplicationController
   end
 
   def update
-    @director = Director.find(params[:director][:id])
+    Rails.logger.info(params.inspect)
+    @director = Director.find(params[:id])
     @director.name = params[:director][:name]
 
     if @director.save
       return redirect_to directors_path
     end
-    render :new
+    render :edit
   end
 end

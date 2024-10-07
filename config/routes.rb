@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root to: "home#index"
 
-  resources :genres, only: [ :index, :new, :create, :show, :edit ]
+  resources :genres
 
-  resources :films, only: [ :index, :new, :create, :show, :edit ] do
+  resources :films, only: [ :index, :new, :create, :show, :edit, :update ] do
       get :drafts, on: :collection
       patch :publish, on: :member
   end
 
-  resources :directors, only: [ :index, :new, :create, :show, :edit ]
+  resources :directors
 end
