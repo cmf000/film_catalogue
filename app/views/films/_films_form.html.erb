@@ -1,0 +1,45 @@
+<%= form_with model: film do |f|%>
+    <div>
+        <%= f.label 'Title'%>
+        <%= f.text_field :title %>
+    </div>
+
+    <div>
+        <%= f.label 'Sinopse'%>
+        <%= f.text_area :sinopsis %>
+    </div>
+
+    <div>
+        <%= f.label 'Ano'%>
+        <%= f.text_field :release_year %>
+    </div>
+
+    <h3>Diretores</h3>
+  <% 3.times do |i| %>
+    <div>
+      <%= label_tag "Diretor #{i + 1}:" %>
+      <%= select_tag "directors[#{i}]", options_from_collection_for_select(Director.all, :id, :name, film.directors[i]&.id), include_blank: true %>
+    </div>
+  <% end %>
+
+  <h3>Países</h3>
+  <% 4.times do |i| %>
+    <div>
+      <%= label_tag "País #{i + 1}:" %>
+      <%= select_tag "countries[#{i}]", options_from_collection_for_select(Country.all, :id, :name, film.countries[i]&.id), include_blank: true %>
+    </div>
+  <% end %>
+
+  <h3>Gêneros</h3>
+  <% 4.times do |i| %>
+    <div>
+      <%= label_tag "Gênero #{i + 1}:" %>
+      <%= select_tag "genres[#{i}]", options_from_collection_for_select(Genre.all, :id, :name, film.genres[i]&.id), include_blank: true %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.submit "Salvar"%>
+  </div>
+
+<%end%>

@@ -1,0 +1,13 @@
+<h1>Rascunhos</h1>
+<ul>
+    <% @films.each do |film| %>
+        <% if film.draft? %>
+            <li>
+                <% text = film.title + ' (' + film.release_year.to_s + ')' %>
+                <%= link_to text, film %>
+            </li>
+        <% end %>
+    <% end %>
+</ul>
+
+<%= render partial: 'shared/menu', locals: { link_to_previous_page: films_path } %>

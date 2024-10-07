@@ -1,0 +1,15 @@
+<h1>Filmes cadastrados</h1>
+<%text = 'Rascunhos (' + @films.where(status: :draft).count.to_s + ')'%>
+<%= link_to text, drafts_films_path%>
+<ul>
+    <% @films.each do |film| %>
+        <% if film.published? %>
+            <li>
+                <% text = film.title + ' (' + film.release_year.to_s + ')' %>
+                <%= link_to text, film %>
+            </li>
+        <% end %>
+    <% end %>
+</ul>
+<%= link_to 'Novo filme', new_film_path%> <br>
+<%= render partial: 'shared/menu', locals: { link_to_previous_page: root_path } %>

@@ -1,0 +1,13 @@
+<h1>Gêneros cadastrados</h1>
+<ul>
+    <% @genres.each do |genre| %>
+        <li>
+            <%= link_to genre.name, genre_path(genre.id)%>
+        </li>
+    <% end %>
+</ul>
+<%= link_to 'Novo gênero', new_genre_path%> <br>
+
+<%= render partial: 'shared/menu', locals: { link_to_previous_page: root_path } %>
+
+

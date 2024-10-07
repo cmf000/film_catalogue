@@ -1,0 +1,9 @@
+<h1>Editar diretor</h1>
+
+<%= form_with model: @director do |f| %>
+  <%= f.label "Nome:" %>
+  <%= f.text_field :name %>
+  <%= f.submit "Salvar" %>
+<% end %>
+
+<%= render partial: 'shared/menu', locals: { link_to_previous_page: directors_path } %>

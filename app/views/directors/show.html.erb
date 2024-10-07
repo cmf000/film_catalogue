@@ -1,0 +1,11 @@
+<h1>Filmes de <%=@director.name%> - <%= link_to 'Editar', edit_director_path(@director.id)%></h1>
+<ul>
+    <% @films.each do |film| %>
+        <li>
+            <%text = film.title + " (" + film.release_year.to_s + ")"%>
+            <%= link_to text, film_path(film.id)%>
+        </li>
+    <% end %>
+</ul>
+
+<%= render partial: 'shared/menu', locals: { link_to_previous_page: directors_path } %>

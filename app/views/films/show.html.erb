@@ -1,0 +1,26 @@
+<%= link_to 'Editar', edit_film_path %>
+<dl>
+    <dt>
+        <strong>Título: </strong> <%= @film.title %>
+    </dt>
+    <dd>
+        <strong>Sinopse: </strong> <%= @film.sinopsis %>
+    </dd>
+    <dd>
+        <strong>Ano: </strong> <%= @film.release_year %>
+    </dd>
+    <dd>
+        <strong>Dirigido: </strong> <%= @film.directors.map{|f| f.name}.join(", ") %>
+    </dd>
+    <dd>
+        <strong>País: </strong> <%= @film.countries.map{|f| f.name}.join(", ") %>
+    </dd>
+    <dd>
+        <strong>Gênero: </strong> <%= @film.genres.map{|f| f.name}.join(", ") %>
+    </dd>
+</dl>
+<% if @film.draft? %>
+    <%= button_to 'publicar', publish_film_path, { method: 'patch'} %>
+<% end %>
+
+<%= render partial: 'shared/menu', locals: { link_to_previous_page: films_path } %>
